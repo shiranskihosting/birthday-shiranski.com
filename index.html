@@ -69,7 +69,7 @@ body{min-height:100svh;display:flex;align-items:center;justify-content:center;pa
     <div class="s">הנחה על ערב אצל <span style="white-space:nowrap">שירנסקי מארח</span></div>
     <div class="v" id="valid" hidden></div>
   </div>
-  <a class="btn" id="book" href="https://wa.me/972544714766" target="_blank" rel="noopener">רוצה לתאם ערב</a>
+  <a class="btn" id="book" href="https://tally.so/r/EkRN1A" target="_blank" rel="noopener">רוצה לתאם ערב</a>
   <div class="sig g">באהבה, שירן</div>
   <img class="logo" src="logo.png" alt="שירנסקי מארח">
   <p class="terms">לאירוע אחד, בלי כפל מבצעים, ובכפוף לתיאום מראש עם שירנסקי מארח.</p>
@@ -93,8 +93,11 @@ if (until) {
   v.textContent = "בתוקף עד " + (+until[3]) + "." + (+until[2]) + "." + until[1];
   v.hidden = false;
 }
-const msg = "היי שירן, קיבלתי ממך מתנה לכבוד יום הולדתי" + (name ? " (" + name + ")" : "") + " 🙂 אשמח לתאם ערב עם ההנחה.";
-document.getElementById("book").href = "https://wa.me/972544714766?text=" + encodeURIComponent(msg);
+// "רוצה לתאם ערב" opens the Tally event form; hidden fields fill the name and the notes ("code" → הערות)
+const form = new URL("https://tally.so/r/EkRN1A");
+if (name) form.searchParams.set("name", name);
+form.searchParams.set("code", "יומולדת 10%");
+document.getElementById("book").href = form.toString();
 
 function track(action) {
   if (!TRACK_URL) return;
