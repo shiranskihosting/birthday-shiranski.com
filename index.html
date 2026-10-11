@@ -83,6 +83,21 @@ body{min-height:100svh;display:flex;align-items:center;justify-content:center;pa
 // Tracking: Apps Script web app on the sheet "מעקב ברכות יום הולדת – שירנסקי מארח" (code: tools/birthday-apps-script.gs)
 const TRACK_URL = "https://script.google.com/macros/s/AKfycbwN-o3pfSabA4FTw00DnQKTVXRWtkgwG1fuRkbwpvgE7BaaGb_Jx7BzDvD8bhfnemRh/exec";
 const q = new URLSearchParams(location.search);
+// Short form: ?<full name with + for spaces>.<DDMM>  e.g. ?ענבל+כהן.1110
+if (!q.has("n") && location.search.length > 1) {
+  let raw = location.search.slice(1).replace(/\+/g, " ");
+  try { raw = decodeURIComponent(raw); } catch (e) {}
+  const m = raw.match(/^(.*?)[.\s](\d{2})(\d{2})$/);
+  if (m) {
+    const now = new Date(), d = +m[2], mo = +m[3];
+    let y = now.getFullYear();
+    if (new Date(y, mo - 1, d) - now > 2 * 864e5) y--; // sent date can't be in the future
+    q.set("n", m[1]);
+    q.set("s", "" + y + m[3] + m[2]);
+  } else {
+    q.set("n", raw);
+  }
+}
 // n = full name (as in the tracking sheet); the card shows the first name only
 const name = (q.get("n") || "").replace(/[<>\u0000-\u001f]/g, "").replace(/\s+/g, " ").trim().slice(0, 30);
 const first = name.split(" ")[0];
