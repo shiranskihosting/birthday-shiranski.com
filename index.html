@@ -96,7 +96,7 @@ if (until) {
 // "רוצה לתאם ערב" opens the Tally event form; hidden fields fill the name and the notes ("code" → הערות)
 const form = new URL("https://tally.so/r/EkRN1A");
 if (name) form.searchParams.set("name", name);
-form.searchParams.set("code", "יומולדת 10%");
+form.searchParams.set("code", "מתנת יומולדת 10%");
 document.getElementById("book").href = form.toString();
 
 function track(action) {
