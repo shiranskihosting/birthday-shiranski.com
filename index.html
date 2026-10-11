@@ -86,7 +86,17 @@ const q = new URLSearchParams(location.search);
 // n = full name (as in the tracking sheet); the card shows the first name only
 const name = (q.get("n") || "").replace(/[<>\u0000-\u001f]/g, "").replace(/\s+/g, " ").trim().slice(0, 30);
 const first = name.split(" ")[0];
-const until = (q.get("t") || "").match(/^(\d{4})(\d{2})(\d{2})$/);
+// t = valid until (YYYYMMDD); if missing, one month after s (the send date)
+let until = (q.get("t") || "").match(/^(\d{4})(\d{2})(\d{2})$/);
+if (!until) {
+  const sm = (q.get("s") || "").match(/^(\d{4})(\d{2})(\d{2})$/);
+  if (sm) {
+    const y = +sm[1], m = +sm[2], d = +sm[3];
+    const last = new Date(y, m + 1, 0).getDate();
+    const nd = new Date(y, m, Math.min(d, last));
+    until = [null, String(nd.getFullYear()), String(nd.getMonth() + 1).padStart(2, "0"), String(nd.getDate()).padStart(2, "0")];
+  }
+}
 const sent = /^\d{8}$/.test(q.get("s") || "") ? q.get("s") : "";
 
 if (first) {
