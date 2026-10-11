@@ -78,13 +78,15 @@ body{min-height:100svh;display:flex;align-items:center;justify-content:center;pa
 // Tracking: Apps Script web app on the sheet "מעקב ברכות יום הולדת – שירנסקי מארח" (code: tools/birthday-apps-script.gs)
 const TRACK_URL = "https://script.google.com/macros/s/AKfycbwN-o3pfSabA4FTw00DnQKTVXRWtkgwG1fuRkbwpvgE7BaaGb_Jx7BzDvD8bhfnemRh/exec";
 const q = new URLSearchParams(location.search);
-const name = (q.get("n") || "").replace(/[<>\u0000-\u001f]/g, "").trim().slice(0, 30);
+// n = full name (as in the tracking sheet); the card shows the first name only
+const name = (q.get("n") || "").replace(/[<>\u0000-\u001f]/g, "").replace(/\s+/g, " ").trim().slice(0, 30);
+const first = name.split(" ")[0];
 const until = (q.get("t") || "").match(/^(\d{4})(\d{2})(\d{2})$/);
 const sent = /^\d{8}$/.test(q.get("s") || "") ? q.get("s") : "";
 
-if (name) {
-  document.getElementById("hi").textContent = "מזל טוב, " + name + "!";
-  document.title = "מזל טוב, " + name + "!";
+if (first) {
+  document.getElementById("hi").textContent = "מזל טוב, " + first + "!";
+  document.title = "מזל טוב, " + first + "!";
 }
 if (until) {
   const v = document.getElementById("valid");
