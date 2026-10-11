@@ -7,8 +7,8 @@
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://birthday.shiranski.com/">
-<meta property="og:title" content="מזל טוב! 🎉 מתנה קטנה משירנסקי מארח">
-<meta property="og:description" content="10% הנחה על ערב אצל שירנסקי מארח, לכבוד יום ההולדת.">
+<meta property="og:title" content="מזל טוב! 🎉 מתנה משירנסקי מארח">
+<meta property="og:description" content="לכבוד יום ההולדת: ₪150 לארוחה זוגית, או ₪40 לכל סועד בערב עם חברים. אתם בוחרים.">
 <meta property="og:image" content="https://birthday.shiranski.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -35,7 +35,10 @@ body{min-height:100svh;display:flex;align-items:center;justify-content:center;pa
 .gift{margin-top:30px;border:1.5px solid var(--gold);border-radius:14px;padding:22px 26px;width:100%;max-width:340px;
   background:linear-gradient(180deg,rgba(217,183,101,.10),rgba(217,183,101,.02));box-shadow:0 0 30px rgba(217,183,101,.12) inset}
 .gift .s{font-size:18px;color:#efe2bd}
-.gift .big{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:78px;line-height:1.1}
+.gift .big{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:56px;line-height:1.1}
+.gift .opt{margin-top:10px}
+.gift .or{font-family:'Playpen Sans Hebrew',cursive;font-size:20px;color:var(--gold);margin-top:8px}
+.gift .pick{font-size:18px;margin-top:12px;font-weight:600}
 .gift .v{font-size:15px;color:var(--muted);margin-top:6px}
 .btn{margin-top:28px;display:inline-block;background:linear-gradient(180deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#14110a;text-decoration:none;font-weight:700;font-size:20px;
   padding:14px 32px;border-radius:999px;box-shadow:0 4px 18px rgba(217,183,101,.25)}
@@ -64,15 +67,17 @@ body{min-height:100svh;display:flex;align-items:center;justify-content:center;pa
   <div class="rule"></div>
   <p class="txt">יום הולדת שמח! מאחל לך שנה של שולחנות מלאים, אנשים טובים ורגעים שמתחשק לחגוג.</p>
   <div class="gift">
-    <div class="s">מתנה קטנה ממני</div>
-    <div class="big g">10%</div>
-    <div class="s">הנחה על ערב אצל <span style="white-space:nowrap">שירנסקי מארח</span></div>
+    <div class="s">מתנה מ<span style="white-space:nowrap">שירנסקי מארח</span></div>
+    <div class="opt"><div class="big g">₪150</div><div class="s">לארוחה זוגית</div></div>
+    <div class="or">או</div>
+    <div class="opt"><div class="big g">₪40</div><div class="s">לכל סועד בערב עם חברים</div></div>
+    <div class="pick">אתם בוחרים</div>
     <div class="v" id="valid" hidden></div>
   </div>
   <a class="btn" id="book" href="https://tally.so/r/EkRN1A" target="_blank" rel="noopener">רוצה לתאם ערב</a>
   <div class="sig g">באהבה, שירן</div>
   <img class="logo" src="logo.png" alt="שירנסקי מארח">
-  <p class="terms">לאירוע אחד, בלי כפל מבצעים, ובכפוף לתיאום מראש עם שירנסקי מארח.</p>
+  <p class="terms">לאירוע אחד, לא בשילוב עם מתנה אחרת, ובכפוף לתיאום מראש עם שירנסקי מארח.</p>
 </main>
 <script>
 // Tracking: Apps Script web app on the sheet "מעקב ברכות יום הולדת – שירנסקי מארח" (code: tools/birthday-apps-script.gs)
@@ -96,7 +101,7 @@ if (until) {
 // "רוצה לתאם ערב" opens the Tally event form; hidden fields fill the name and the notes ("code" → הערות)
 const form = new URL("https://tally.so/r/EkRN1A");
 if (name) form.searchParams.set("name", name);
-form.searchParams.set("code", "מתנת יומולדת 10%");
+form.searchParams.set("code", "מתנת יום הולדת: ₪150 זוגי / ₪40 לסועד");
 document.getElementById("book").href = form.toString();
 
 function track(action) {
