@@ -136,8 +136,9 @@ h1{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(32px,10v
 const TRACK_URL = "https://script.google.com/macros/s/AKfycbwN-o3pfSabA4FTw00DnQKTVXRWtkgwG1fuRkbwpvgE7BaaGb_Jx7BzDvD8bhfnemRh/exec";
 const q = new URLSearchParams(location.search);
 // Short form: ?<full name with + for spaces>.<DDMM>  e.g. ?ענבל+כהן.1110
-if (!q.has("n") && location.search.length > 1) {
-  let raw = location.search.slice(1).replace(/\+/g, " ");
+if (!q.has("n") && location.search.length > 1 && !/^fbclid=/i.test(location.search.slice(1))) {
+  // Facebook and others append "&fbclid=..." to shared links: keep only the part before the first "&"
+  let raw = location.search.slice(1).split("&")[0].replace(/\+/g, " ");
   try { raw = decodeURIComponent(raw); } catch (e) {}
   const m = raw.match(/^(.*?)[.\s](\d{2})(\d{2})$/);
   if (m) {
