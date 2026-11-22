@@ -8,76 +8,128 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://birthday.shiranski.com/">
 <meta property="og:title" content="מזל טוב! 🎉 מתנה משירנסקי מארח">
-<meta property="og:description" content="לכבוד יום ההולדת: ₪150 לארוחה זוגית, או ₪40 לכל סועד בערב עם חברים. אתם בוחרים.">
+<meta property="og:description" content="לכבוד יום ההולדת: הטבה בעלות של ₪150 לארוחה זוגית, או ₪40 לכל סועד בערב עם חברים. אתם בוחרים.">
 <meta property="og:image" content="https://birthday.shiranski.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F6F1E9">
 <link rel="icon" href="logo.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@700&family=Playpen+Sans+Hebrew&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d0c0a;--panel:#16140f;--gold:#d9b765;--gold2:#f6e3a1;--gold3:#a8822f;--muted:#b9a777}
+/* כרטיס מתנת יום הולדת – כיוון א3 (מעטפה), 22.11.2026 */
+:root{
+  --bg:#F6F1E9; --bg-glow:#FBF7F1; --ink:#2B2522; --muted:#6B5F57;
+  --copper:#B4693E; --copper-dark:#8E4F2A; --sea:#1D3C4E; --paper:#FFFDF9;
+  --env-flap:#E6D7C2; --env-liner:#DCC9AE; --env-back:#E2D2BB;
+  --env-front:#F1E6D6; --env-side:#EADCC7; --env-bottom:#F4EADC;
+}
 *{margin:0;box-sizing:border-box}
-html,body{background:var(--bg);color:var(--gold2);font-family:Assistant,sans-serif}
-body{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:16px;
-  background:radial-gradient(ellipse at 50% 0%,#2a2416 0%,var(--bg) 60%)}
-.g{background:linear-gradient(180deg,var(--gold2) 0%,var(--gold) 45%,var(--gold3) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.card{position:relative;overflow:hidden;width:100%;max-width:520px;border:2px solid var(--gold);outline:1px solid var(--gold3);outline-offset:-10px;
-  padding:52px 28px 32px;text-align:center;display:flex;flex-direction:column;align-items:center;background:rgba(0,0,0,.25)}
-.card>*{position:relative;z-index:1}
-.spark{position:absolute;inset:0;z-index:0;pointer-events:none}
-.top{font-size:15px;letter-spacing:.35em;color:var(--gold);margin-bottom:10px}
-.hi{font-family:'Playpen Sans Hebrew',cursive;font-size:clamp(40px,11vw,58px);line-height:1.25;word-break:break-word;font-weight:400}
-.rule{width:140px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px 0 4px}
-.txt{font-size:clamp(19px,5vw,23px);line-height:1.6;margin-top:12px;max-width:400px;color:#efe2bd}
-.gift{margin-top:30px;border:1.5px solid var(--gold);border-radius:14px;padding:22px 26px;width:100%;max-width:340px;
-  background:linear-gradient(180deg,rgba(217,183,101,.10),rgba(217,183,101,.02));box-shadow:0 0 30px rgba(217,183,101,.12) inset}
-.gift .s{font-size:18px;color:#efe2bd}
-.gift .big{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:56px;line-height:1.1}
-.gift .opt{margin-top:10px}
-.gift .or{font-family:'Playpen Sans Hebrew',cursive;font-size:20px;color:var(--gold);margin-top:8px}
-.gift .pick{font-size:18px;margin-top:12px;font-weight:600}
-.gift .v{font-size:15px;color:var(--muted);margin-top:6px}
-.btn{margin-top:28px;display:inline-block;background:linear-gradient(180deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#14110a;text-decoration:none;font-weight:700;font-size:20px;
-  padding:14px 32px;border-radius:999px;box-shadow:0 4px 18px rgba(217,183,101,.25)}
+html,body{background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{min-height:100svh;display:flex;justify-content:center;
+  background:radial-gradient(ellipse 120% 70% at 50% 0%,var(--bg-glow) 0%,var(--bg) 70%)}
+.card{width:100%;max-width:430px;padding:40px 28px 36px;display:flex;flex-direction:column;align-items:center;text-align:center}
+
+/* המעטפה */
+.env{width:240px;max-width:68vw;height:auto;overflow:visible;animation:sway 6s ease-in-out infinite;transform-origin:50% 90%}
+.env .letter{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) .25s both}
+.env .spark{transform-box:fill-box;transform-origin:center;animation:float 4s ease-in-out infinite;opacity:0}
+.env .spark:nth-of-type(2){animation-delay:1s}
+.env .spark:nth-of-type(3){animation-delay:2s}
+.env .spark:nth-of-type(4){animation-delay:3s}
+@keyframes sway{0%,100%{transform:rotate(0)}50%{transform:rotate(-2deg)}}
+@keyframes rise{from{transform:translateY(46px)}to{transform:translateY(0)}}
+@keyframes float{0%{opacity:0;transform:translateY(8px) scale(.6)}20%{opacity:1}70%{opacity:.9}100%{opacity:0;transform:translateY(-26px) scale(1)}}
+
+/* כניסה רכה של התוכן, שורה אחרי שורה */
+.in{animation:fadeUp .7s ease-out both}
+.in.d1{animation-delay:.55s}.in.d2{animation-delay:.7s}.in.d3{animation-delay:.85s}
+.in.d4{animation-delay:1s}.in.d5{animation-delay:1.15s}.in.d6{animation-delay:1.3s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.label{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:14px;font-weight:500;color:var(--copper-dark);letter-spacing:.02em}
+.label svg{width:10px;height:10px;fill:var(--copper)}
+h1{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(32px,10vw,40px);line-height:1.15;margin-top:10px;color:var(--ink);word-break:break-word}
+.txt{font-size:16px;line-height:1.55;color:var(--muted);max-width:310px;margin-top:12px}
+.from{font-size:13px;font-weight:500;color:var(--copper-dark);margin-top:28px}
+
+.gift{width:100%;margin-top:12px;display:flex;align-items:center;background:var(--paper);
+  border:1px solid rgba(180,105,62,.35);border-radius:20px;padding:18px 0;box-shadow:0 8px 20px -8px rgba(90,56,26,.16)}
+.opt{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 8px}
+.big{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:34px;line-height:1.15;color:var(--ink)}
+.sub{font-size:13px;line-height:1.35;font-weight:700;color:var(--muted);max-width:120px}
+.lbl{font-size:12px;line-height:1.3;font-weight:700;color:var(--copper-dark)}
+.or{display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'Frank Ruhl Libre',serif;font-size:16px;color:var(--copper-dark)}
+.or::before,.or::after{content:"";width:1px;height:24px;background:rgba(180,105,62,.35)}
+.pick{font-size:13px;color:var(--muted);margin-top:10px}
+.valid{font-size:13px;color:var(--muted);margin-top:4px}
+
+.btn{display:block;width:100%;margin-top:26px;padding:16px;border-radius:28px;background:var(--sea);color:#fff;
+  text-decoration:none;font-size:17px;font-weight:500;transition:transform .15s,box-shadow .15s;box-shadow:0 6px 18px -8px rgba(29,60,78,.55)}
 .btn:active{transform:scale(.98)}
-.sig{font-family:'Playpen Sans Hebrew',cursive;font-size:24px;margin-top:26px}
-.logo{width:120px;margin-top:20px}
-.terms{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.5;max-width:360px;opacity:.85}
+.btn:focus-visible{outline:3px solid var(--copper);outline-offset:3px}
+.sig{font-family:'Frank Ruhl Libre',serif;font-weight:500;font-size:20px;margin-top:24px;color:var(--ink)}
+.logo{width:96px;margin-top:10px}
+.terms{font-size:13px;font-weight:300;line-height:1.4;color:var(--muted);max-width:310px;margin-top:20px}
+
+@media (prefers-reduced-motion:reduce){
+  .env,.env .letter,.in{animation:none}
+  .env .spark{animation:none;opacity:.9}
+}
 </style>
 </head>
 <body>
 <main class="card">
-  <svg class="spark" viewBox="0 0 520 900" preserveAspectRatio="none" aria-hidden="true">
-    <g fill="#d9b765">
-      <circle cx="48" cy="70" r="2.5"/><circle cx="470" cy="96" r="2"/><circle cx="90" cy="180" r="1.5"/><circle cx="440" cy="210" r="2.5"/>
-      <circle cx="30" cy="420" r="2"/><circle cx="492" cy="470" r="1.5"/><circle cx="60" cy="640" r="2"/><circle cx="465" cy="700" r="2.5"/>
-      <circle cx="120" cy="820" r="1.5"/><circle cx="400" cy="850" r="2"/>
-      <path d="M432 40l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/><path d="M80 115l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>
-      <path d="M478 330l2.5 7 7 2.5-7 2.5-2.5 7-2.5-7-7-2.5 7-2.5z"/><path d="M42 300l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>
-      <path d="M470 600l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M50 760l2.5 7 7 2.5-7 2.5-2.5 7-2.5-7-7-2.5 7-2.5z"/>
-      <rect x="140" y="50" width="6" height="2" transform="rotate(30 143 51)"/><rect x="380" y="150" width="7" height="2" transform="rotate(-40 383 151)"/>
-      <rect x="20" y="540" width="7" height="2" transform="rotate(60 23 541)"/><rect x="500" y="800" width="6" height="2" transform="rotate(-20 503 801)"/>
+  <svg class="env" viewBox="0 0 240 200" role="img" aria-label="מעטפה פתוחה עם כרטיס">
+    <defs>
+      <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#4d3319" flood-opacity=".14"/></filter>
+      <filter id="lift" x="-10%" y="-30%" width="120%" height="150%"><feDropShadow dx="0" dy="-2" stdDeviation="3" flood-color="#4d3319" flood-opacity=".12"/></filter>
+    </defs>
+    <ellipse cx="120" cy="192" rx="98" ry="7" fill="#5A4330" opacity=".16" filter="url(#soft)"/>
+    <polygon points="10,70 120,14 230,70" fill="var(--env-flap)"/>
+    <polygon points="24,70 120,22 216,70" fill="var(--env-liner)" opacity=".55"/>
+    <rect x="10" y="68" width="220" height="120" rx="10" fill="var(--env-back)"/>
+    <g class="letter">
+      <rect x="42" y="28" width="156" height="118" rx="8" fill="var(--paper)" filter="url(#cardShadow)"/>
+      <path d="M120 52 Q122.3 69.7 138 70 Q122.3 70.3 120 88 Q117.7 70.3 102 70 Q117.7 69.7 120 52Z" fill="var(--copper)"/>
     </g>
+    <g filter="url(#lift)">
+      <path d="M10 78 L120 134 L230 78 L230 188 L10 188 Z" fill="var(--env-front)"/>
+      <path d="M10 78 L114 142 L10 188 Z" fill="var(--env-side)"/>
+      <path d="M230 78 L126 142 L230 188 Z" fill="var(--env-side)"/>
+      <path d="M10 188 L120 128 L230 188 Z" fill="var(--env-bottom)"/>
+    </g>
+    <path class="spark" d="M70 12 Q71 17 76 18 Q71 19 70 24 Q69 19 64 18 Q69 17 70 12Z" fill="#D9A27C"/>
+    <path class="spark" d="M186 6 Q186.8 9.2 190 10 Q186.8 10.8 186 14 Q185.2 10.8 182 10 Q185.2 9.2 186 6Z" fill="var(--copper)"/>
+    <path class="spark" d="M160 -6 Q160.6 -3.6 163 -3 Q160.6 -2.4 160 0 Q159.4 -2.4 157 -3 Q159.4 -3.6 160 -6Z" fill="#E7C3A6"/>
+    <path class="spark" d="M94 -2 Q94.6 .4 97 1 Q94.6 1.6 94 4 Q93.4 1.6 91 1 Q93.4 .4 94 -2Z" fill="var(--copper)"/>
   </svg>
-  <div class="top">✦ HAPPY BIRTHDAY ✦</div>
-  <h1 class="hi g" id="hi">מזל טוב!</h1>
-  <div class="rule"></div>
-  <p class="txt">יום הולדת שמח! מאחל לך שנה של שולחנות מלאים, אנשים טובים ורגעים שמתחשק לחגוג.</p>
-  <div class="gift">
-    <div class="s">מתנה מ<span style="white-space:nowrap">שירנסקי מארח</span></div>
-    <div class="opt"><div class="big g">₪150</div><div class="s">לארוחה זוגית</div></div>
-    <div class="or">או</div>
-    <div class="opt"><div class="big g">₪40</div><div class="s">לכל סועד בערב עם חברים</div></div>
-    <div class="pick">אתם בוחרים</div>
-    <div class="v" id="valid" hidden></div>
+
+  <div class="label in d1">
+    <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0Q5.65 4.35 10 5Q5.65 5.65 5 10Q4.35 5.65 0 5Q4.35 4.35 5 0Z"/></svg>
+    לכבוד יום ההולדת
+    <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0Q5.65 4.35 10 5Q5.65 5.65 5 10Q4.35 5.65 0 5Q4.35 4.35 5 0Z"/></svg>
   </div>
-  <a class="btn" id="book" href="https://tally.so/r/EkRN1A" target="_blank" rel="noopener">רוצה לתאם ערב</a>
-  <div class="sig g">באהבה, שירן</div>
-  <img class="logo" src="logo.png" alt="שירנסקי מארח">
-  <p class="terms">לאירוע אחד, לא בשילוב עם מתנה אחרת, ובכפוף לתיאום מראש עם שירנסקי מארח.</p>
+  <h1 class="in d2" id="hi">מזל טוב!</h1>
+  <p class="txt in d3">יום הולדת שמח! מאחל לך שנה של שולחנות מלאים, אנשים טובים ורגעים שמתחשק לחגוג.</p>
+
+  <div class="from in d4">מתנה מ<span style="white-space:nowrap">שירנסקי מארח</span></div>
+  <div class="gift in d4">
+    <div class="opt"><div class="lbl">הטבה בעלות של</div><div class="big">₪150</div><div class="sub">לארוחה זוגית</div></div>
+    <div class="or">או</div>
+    <div class="opt"><div class="lbl">הטבה בעלות של</div><div class="big">₪40</div><div class="sub">לכל סועד בערב עם חברים</div></div>
+  </div>
+  <div class="pick in d4">אתם בוחרים</div>
+  <div class="valid in d4" id="valid" hidden></div>
+
+  <a class="btn in d5" id="book" href="https://tally.so/r/EkRN1A" target="_blank" rel="noopener">רוצה לתאם ערב</a>
+  <div class="sig in d6">באהבה, שירן</div>
+  <img class="logo in d6" src="logo.png" alt="שירנסקי מארח">
+  <p class="terms in d6">לאירוע אחד, לא בשילוב עם מתנה אחרת, ובכפוף לתיאום מראש עם שירנסקי מארח.</p>
 </main>
 <script>
 // Tracking: Apps Script web app on the sheet "מעקב ברכות יום הולדת – שירנסקי מארח" (code: tools/birthday-apps-script.gs)
